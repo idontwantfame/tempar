@@ -1,3 +1,17 @@
+## 1.7.0 (2026-09-18)
+
+### Added/Improved
+
+ * Added a GitHub Actions build which publishes the release archive and PSP test application as workflow artifacts.
+ * Added `plugins.txt` for Adrenaline 8 and Epinephrine, with PSP and POPS TempAR entries.
+ * Added a PSP compatibility test application with runtime-addressed direct, pointer, and multi-write fixtures.
+ * Documented PSP and Vita installation, current CWCheat Database Plus downloads, and third-party code provenance.
+
+### Fixed
+
+ * Fixed PSP SDK build warnings and several related correctness issues in formatting, cheat insertion, file buffering,
+   configuration loading, and cheat database validation.
+
 ## 1.6.4 (2022-10-03)
 
 ### Fixed
