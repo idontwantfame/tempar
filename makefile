@@ -3,6 +3,11 @@ export RELVER := 1.6.4
 release: prep psp lite pack clean
 release_pr: prep psppr litepr pack clean
 
+test-app:
+	$(MAKE) -C tests/psp
+	mkdir -p build/tempar-test
+	cp tests/psp/EBOOT.PBP build/tempar-test/EBOOT.PBP
+
 clean:
 	rm -f src/*.elf
 	rm -f src/*.prx

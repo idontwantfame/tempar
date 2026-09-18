@@ -52,8 +52,8 @@ TempAR requires PSP custom firmware with plugin support; it does not run on offi
    ms0:/seplugins/TempAR/tempar_lite.prx 1
    ```
 
-   Adrenaline 8 and Epinephrine use `ux0:/pspemu/seplugins/plugins.txt` instead. Add these entries there (or use
-   their Plugin Manager):
+   Adrenaline 8 and Epinephrine use `ux0:/pspemu/seplugins/plugins.txt` instead. The release includes this file;
+   copy it if you do not already have one, otherwise add these entries (or use their Plugin Manager):
 
    ```text
    psp, ms0:/seplugins/TempAR/tempar.prx, on

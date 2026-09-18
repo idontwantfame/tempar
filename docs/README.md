@@ -47,8 +47,9 @@ TempAR requires custom firmware with plugin support. It does not run on official
    The release archive includes both files with these entries. If you already use plugins, append the line rather
    than overwriting your existing `game.txt` or `pops.txt`.
 
-   Adrenaline 8 and Epinephrine use a single `ux0:/pspemu/seplugins/plugins.txt` file. Add the following entries
-   there, or enable the PRXs through their Plugin Manager:
+   Adrenaline 8 and Epinephrine use a single `ux0:/pspemu/seplugins/plugins.txt` file. The release includes this
+   file; copy it if you do not already have one, otherwise add the following entries, or enable the PRXs through
+   their Plugin Manager:
 
    ```text
    psp, ms0:/seplugins/TempAR/tempar.prx, on

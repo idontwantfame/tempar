@@ -4,3 +4,6 @@ src/*.elf
 src/*.prx
 src/objects/*.o
 src/languages/*.h
+tests/psp/*.elf
+tests/psp/*.o
+tests/psp/EBOOT.PBP

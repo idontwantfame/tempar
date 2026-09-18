@@ -1,0 +1,2 @@
+psp, ms0:/seplugins/TempAR/tempar.prx, on
+pops, ms0:/seplugins/TempAR/tempar_lite.prx, on
