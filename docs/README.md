@@ -16,29 +16,42 @@ replay code types. And from that came "TempAR", the angry cheat device. :)
 TempAR requires custom firmware with plugin support. It does not run on official PSP firmware.
 
 1. Extract the TempAR release archive.
-2. Copy the extracted `seplugins` directory to the root of the Memory Stick. The plugin files should then be at:
+2. Copy the extracted `seplugins` directory to the root of the PSP Memory Stick or PS Vita `ux0:` storage. The plugin
+   files should then be at:
 
    ```text
    ms0:/seplugins/TempAR/tempar.prx
-   ms0:/seplugins/TempAR/tempar_lite.prx
+   ux0:/seplugins/TempAR/tempar.prx  (PS Vita)
    ```
 
 3. Enable the normal plugin for PSP games by adding this line to `ms0:/seplugins/game.txt`:
 
    ```text
    ms0:/seplugins/TempAR/tempar.prx 1
+
+   # PS Vita
+   ux0:/seplugins/TempAR/tempar.prx 1
    ```
 
 4. Enable the lite plugin for PS1/POPS games by adding this line to `ms0:/seplugins/pops.txt`:
 
    ```text
    ms0:/seplugins/TempAR/tempar_lite.prx 1
+
+   # PS Vita
+   ux0:/seplugins/TempAR/tempar_lite.prx 1
    ```
 
    The release archive includes both files with these entries. If you already use plugins, append the line rather
    than overwriting your existing `game.txt` or `pops.txt`.
 
 5. Restart the game or reboot the PSP. Open the TempAR menu with `RTRIGGER+HOME`.
+
+### Cheat database
+
+The release includes `cheat.db`. To use the current [CWCheat Database Plus](https://github.com/Saramagrean/CWCheat-Database-Plus-), download its
+[`cheat.db`](https://github.com/Saramagrean/CWCheat-Database-Plus-/raw/refs/heads/master/cheat.db) and replace the file in
+`ms0:/seplugins/TempAR/` (or `ux0:/seplugins/TempAR/` on PS Vita).
 
 ### Hotkeys
 
