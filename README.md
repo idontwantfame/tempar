@@ -26,29 +26,38 @@ See the full acknowledgements in the [plugin guide](docs/README.md#thanks).
 TempAR requires PSP custom firmware with plugin support; it does not run on official firmware.
 
 1. Download and extract the release archive, or build one as described below.
-2. Copy its `seplugins` directory to the root of the PSP Memory Stick or PS Vita `ux0:` storage. The resulting plugin
-   paths must be:
+2. Copy its `seplugins` directory to the root of the PSP Memory Stick. On a PS Vita running Adrenaline, copy it to
+   `ux0:/pspemu/`, so the resulting files are:
 
    ```text
    PSP:      ms0:/seplugins/TempAR/tempar.prx
-   PS Vita:  ux0:/seplugins/TempAR/tempar.prx
+   PS Vita:  ux0:/pspemu/seplugins/TempAR/tempar.prx
    ```
 
-3. Register the appropriate plugin entry. The archive supplies ready-made `game.txt` and `pops.txt`; if you already
-   have either file, append the relevant line instead of replacing it:
+3. Register the appropriate plugin entry. PSP paths inside the PSP environment use `ms0:` on both a PSP and a Vita.
+   The archive supplies ready-made classic `game.txt` and `pops.txt`; if you already have either file, append the
+   relevant line instead of replacing it:
 
    ```text
    # PSP games: ms0:/seplugins/game.txt
    ms0:/seplugins/TempAR/tempar.prx 1
 
-   # PS Vita games: ux0:/seplugins/game.txt
-   ux0:/seplugins/TempAR/tempar.prx 1
+   # Classic Adrenaline configuration: ux0:/pspemu/seplugins/game.txt
+   ms0:/seplugins/TempAR/tempar.prx 1
 
    # PS1/POPS games: ms0:/seplugins/pops.txt
    ms0:/seplugins/TempAR/tempar_lite.prx 1
 
-   # PS1/POPS on PS Vita: ux0:/seplugins/pops.txt
-   ux0:/seplugins/TempAR/tempar_lite.prx 1
+   # Classic Adrenaline configuration: ux0:/pspemu/seplugins/pops.txt
+   ms0:/seplugins/TempAR/tempar_lite.prx 1
+   ```
+
+   Adrenaline 8 and Epinephrine use `ux0:/pspemu/seplugins/plugins.txt` instead. Add these entries there (or use
+   their Plugin Manager):
+
+   ```text
+   psp, ms0:/seplugins/TempAR/tempar.prx, on
+   pops, ms0:/seplugins/TempAR/tempar_lite.prx, on
    ```
 
 4. Restart the game (or reboot the PSP). Press `R+HOME` in-game to open TempAR.
@@ -56,7 +65,7 @@ TempAR requires PSP custom firmware with plugin support; it does not run on offi
 ### Cheat database
 
 TempAR includes a `cheat.db`. For a newer CWCheat database, download [`cheat.db` from CWCheat Database Plus](https://github.com/Saramagrean/CWCheat-Database-Plus-/raw/refs/heads/master/cheat.db) and replace
-`ms0:/seplugins/TempAR/cheat.db` (or `ux0:/seplugins/TempAR/cheat.db` on PS Vita).
+`ms0:/seplugins/TempAR/cheat.db` (or `ux0:/pspemu/seplugins/TempAR/cheat.db` on PS Vita).
 
 See the [plugin guide](docs/README.md) for controls, cheat formats, and configuration details.
 
