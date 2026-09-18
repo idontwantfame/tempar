@@ -13,8 +13,32 @@ replay code types. And from that came "TempAR", the angry cheat device. :)
 
 ### Installation
 
-1. Copy the seplugins folder to your Memory Stick
-   (if not copying over game.txt and pops.txt be sure to manually add those lines to the files).
+TempAR requires custom firmware with plugin support. It does not run on official PSP firmware.
+
+1. Extract the TempAR release archive.
+2. Copy the extracted `seplugins` directory to the root of the Memory Stick. The plugin files should then be at:
+
+   ```text
+   ms0:/seplugins/TempAR/tempar.prx
+   ms0:/seplugins/TempAR/tempar_lite.prx
+   ```
+
+3. Enable the normal plugin for PSP games by adding this line to `ms0:/seplugins/game.txt`:
+
+   ```text
+   ms0:/seplugins/TempAR/tempar.prx 1
+   ```
+
+4. Enable the lite plugin for PS1/POPS games by adding this line to `ms0:/seplugins/pops.txt`:
+
+   ```text
+   ms0:/seplugins/TempAR/tempar_lite.prx 1
+   ```
+
+   The release archive includes both files with these entries. If you already use plugins, append the line rather
+   than overwriting your existing `game.txt` or `pops.txt`.
+
+5. Restart the game or reboot the PSP. Open the TempAR menu with `RTRIGGER+HOME`.
 
 ### Hotkeys
 
