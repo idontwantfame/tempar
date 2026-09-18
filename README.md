@@ -62,6 +62,27 @@ TempAR requires PSP custom firmware with plugin support; it does not run on offi
 
 4. Restart the game (or reboot the PSP). Press `R+HOME` in-game to open TempAR.
 
+## Using TempAR
+
+Open the menu in-game with `R+HOME` (on Vita/Adrenaline, this is normally `R+PS`). Choose cheats in the **Cheats**
+tab with `CROSS`; press `NOTE` to enable or disable the cheat engine globally. Cheats marked as always-on remain
+active regardless of the global setting.
+
+| Shortcut | Action |
+|----------|--------|
+| `CROSS` / `CIRCLE` | Select or activate / go back or close the menu |
+| `L` / `R` | Previous / next tab |
+| `R+HOME` | Open the TempAR menu |
+| `NOTE` | Toggle the cheat engine on or off |
+| `SELECT+VOLDOWN` | Take a screenshot |
+| `START` (memory browser) | Switch between memory browser and disassembler |
+| `CROSS` (memory browser) | Toggle value-edit mode |
+| `SQUARE+RIGHT` (disassembler) | Follow the selected pointer |
+| `SQUARE+LEFT` (disassembler) | Return from a followed pointer |
+
+For creating cheats, memory searches, code formats, and the complete shortcut list, see the
+[plugin guide](docs/README.md).
+
 ### Cheat database
 
 TempAR includes a `cheat.db`. For a newer CWCheat database, download [`cheat.db` from CWCheat Database Plus](https://github.com/Saramagrean/CWCheat-Database-Plus-/raw/refs/heads/master/cheat.db) and replace
