@@ -5,6 +5,7 @@
 #include <psputils.h>
 #include <pspthreadman.h>
 #include "common.h"
+#include "address.h"
 
 extern Config cfg;
 extern MenuState menu;
@@ -30,15 +31,7 @@ u32 dx_run_counter;
 /* Cheat apply functions */
 
 u32 real_address(u32 address) {
-	address &= 0x0FFFFFFF;
-
-	if(address >= 0 && address <= cfg.address_end - cfg.address_start) {
-		address += cfg.address_start;
-	} else if(address > cfg.address_end) {
-		address = cfg.address_end;
-	}
-
-	return address;
+	return tempar_real_address(address, cfg.address_start, cfg.address_end);
 }
 
 u32 address(u32 address) {
@@ -1086,6 +1079,12 @@ void cheat_load_db(const char *file, const char *game_id, char index) {
 	SceUID fd = fileIoOpen(file, PSP_O_RDONLY, 0777);
 
 	if(fd > -1) {
+		if(fileIoLseek(fd, 0, SEEK_END) > (32 * 1024 * 1024)) {
+			fileIoClose(fd);
+			return;
+		}
+		fileIoLseek(fd, 0, SEEK_SET);
+
 		Cheat *cheat = NULL;
 		Block *block = NULL;
 
@@ -1204,6 +1203,11 @@ void cheat_load_bin(const char *file, const char *game_id, char index) {
 		fileIoLseek(fd, 28, SEEK_CUR);
 
 		while(fileIoRead(fd, &game_header, sizeof(ARGameHeader)) == sizeof(ARGameHeader)) {
+			if(game_header.header_size < sizeof(ARGameHeader) || game_header.item_count > 4096 ||
+				(game_header.game_size != 0 && game_header.game_size * 4 < sizeof(ARGameHeader))) {
+				break;
+			}
+
 			// skip game and continue loop if game id doesn't match
 			if(!gameid_matches(game_id, game_header.game_id) || current_cheat_index++ < index) {
 				if(game_header.game_size == 0) {
@@ -1227,10 +1231,13 @@ void cheat_load_bin(const char *file, const char *game_id, char index) {
 			fileIoLseek(fd, game_header.header_size - sizeof(game_header), SEEK_CUR);
 
 			while(game_header.item_count-- > 0) {
+				if(fileIoRead(fd, &item_header, sizeof(item_header)) != sizeof(item_header) || item_header.code_count > 4096) {
+					break;
+				}
+
 				cheat = cheat_add(NULL);
 
 				if(cheat) {
-					fileIoRead(fd, &item_header, sizeof(item_header));
 
 					// read/skip the cheat name
 					cheat_set_name(cheat, fileIoGet(), 0);

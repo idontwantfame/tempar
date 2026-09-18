@@ -17,9 +17,10 @@ int config_load(const char *file) {
 	if(fd > -1) {
 		// read the config file
 		u8 config_ver = 0;
-		sceIoRead(fd, &config_ver, sizeof(u8));
-		if(config_ver == CONFIG_VER) {
-			sceIoRead(fd, (void*)&cfg + 1, sizeof(Config) - 1);
+		if(sceIoRead(fd, &config_ver, sizeof(u8)) == sizeof(u8) && config_ver == CONFIG_VER) {
+			if(sceIoRead(fd, (u8*)&cfg + 1, sizeof(Config) - 1) != sizeof(Config) - 1) {
+				config_reset();
+			}
 		}
 		sceIoClose(fd);
 
