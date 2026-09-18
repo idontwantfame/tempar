@@ -52,5 +52,5 @@ jobs:
           generate_release_notes: true
           files: |
             release/tempar-*.tar.gz
-            release/EBOOT.PBP
+            release/tempar-test/EBOOT.PBP
           fail_on_unmatched_files: true
