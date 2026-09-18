@@ -1,7 +1,6 @@
 ## To Do List
 
 ### General
- * Fix compile warnings.
  * Build a signed OFW compatible EBOOT (... maybe one day, no real user benefit but has been a long term desire).
  * Verify compatibility/improve usability with the PS Vita.
  * Remove/rework features where they don't make sense nowadays.

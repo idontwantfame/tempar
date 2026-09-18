@@ -864,7 +864,6 @@ void print_vfpureg(int reg, char type)
 static void decode_args(unsigned int opcode, unsigned int PC, const char *fmt, unsigned int *realregs)
 {
 	int i = 0;
-	int vmmul = 0;
 
 	while(fmt[i])
 	{
@@ -932,8 +931,7 @@ static void decode_args(unsigned int opcode, unsigned int PC, const char *fmt, u
 						  break;
 				case 'Y': print_ofs(IMM(opcode) & ~3, RS(opcode), realregs);
 						  break;
-				case '?': vmmul = 1;
-						  break;
+				case '?': break;
 				case 0: goto end;
 				default: break;
 			};
@@ -1016,7 +1014,7 @@ void mipsDecode(unsigned int opcode, unsigned int PC) {
 	unsigned int realregs[20];
 	unsigned int regmask;
 
-	disasmInstruction(opcode, (PC & 0x0FFFFFFF), &realregs, &regmask);
+	disasmInstruction(opcode, (PC & 0x0FFFFFFF), realregs, &regmask);
 	pspDebugScreenSetTextColor(colors.color02);
 }
 

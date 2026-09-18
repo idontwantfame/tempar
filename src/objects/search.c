@@ -191,7 +191,6 @@ void search_start(char search_mode) {
 		}
 	}
 
-FinishSearch:
 	if(search.num_history < SEARCH_HISTORY_MAX - 1) {
 		search.num_history++;
 	}
@@ -327,7 +326,7 @@ Cheat *search_add_loaded_results(u8 flags) {
 }
 
 Cheat *search_add_result(u32 address, u8 flags) {
-	Cheat *cheat;
+	Cheat *cheat = NULL;
 
 	switch(search.history[0].flags & FLAG_DWORD) {
 		case FLAG_DWORD:

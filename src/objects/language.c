@@ -31,6 +31,8 @@ static void language_process_buffer(void *lang_string, int size) {
 }
 
 void language_init() {
+	(void)size_language_english;
+
 	// free language file buffer and clear language structure
 	language_deinit();
 

@@ -1429,16 +1429,16 @@ void cheat_save(const char *game_id) {
 					switch(cheat->flags & (CHEAT_CWCHEAT | CHEAT_PSPAR | CHEAT_PSPAR_EXT)) {
 						case CHEAT_CWCHEAT:
 							if(sceKernelInitKeyConfig() == PSP_INIT_KEYCONFIG_POPS) {
-								sprintf(buffer, "_L %08lX %04X\n", block->address, MEM_SHORT(block->value));
+								sprintf(buffer, "_L %08X %04X\n", block->address, MEM_SHORT(block->value));
 							} else {
-								sprintf(buffer, "_L 0x%08lX 0x%08lX\n", block->address, block->value);
+								sprintf(buffer, "_L 0x%08X 0x%08X\n", block->address, block->value);
 							}
 							break;
 						case CHEAT_PSPAR:
-							sprintf(buffer, "_M 0x%08lX 0x%08lX\n", block->address, block->value);
+							sprintf(buffer, "_M 0x%08X 0x%08X\n", block->address, block->value);
 							break;
 						case CHEAT_PSPAR_EXT:
-							sprintf(buffer, "_N 0x%08lX 0x%08lX\n", block->address, block->value);
+							sprintf(buffer, "_N 0x%08X 0x%08X\n", block->address, block->value);
 							break;
 					}
 
@@ -1481,7 +1481,9 @@ char *gameid_get(char force_refresh) {
 						u8 md5[16];
 						sceKernelUtilsMd5Digest(fileIoGet(), 2048, md5);
 						fileIoClose(fd);
-						sprintf(game_id, "HB%08lX", *(u32*)(md5 + 4) ^ *(u32*)(md5) ^ *(u32*)(md5 + 8) ^ *(u32*)(md5 + 12));
+						u32 md5_words[4];
+						memcpy(md5_words, md5, sizeof(md5_words));
+						sprintf(game_id, "HB%08X", md5_words[0] ^ md5_words[1] ^ md5_words[2] ^ md5_words[3]);
 					}
 				}
 
@@ -1652,7 +1654,7 @@ Cheat *cheat_new(int index, u32 address, u32 value, u8 length, u8 flags, u32 siz
 	Cheat *cheat = cheat_insert(NULL, index);
 
 	if(cheat) {
-		sprintf(cheat->name, "NEW CHEAT %li", cheat_new_no++);
+		sprintf(cheat->name, "NEW CHEAT %u", cheat_new_no++);
 		cheat->flags = flags;
 
 		address = real_address(address);
@@ -1728,7 +1730,7 @@ Cheat *cheat_new_from_memory(u32 address_start, u32 address_end) {
 	Cheat *cheat = cheat_add(NULL);
 
 	if(cheat) {
-		sprintf(cheat->name, "NEW CHEAT %li", cheat_new_no);
+		sprintf(cheat->name, "NEW CHEAT %u", cheat_new_no);
 		cheat->flags = CHEAT_PSPAR;
 
 		int i;
@@ -2132,7 +2134,7 @@ Cheat *cheat_insert(Cheat *cheat, int index) {
 		// setup the new cheat
 		Cheat *new_cheat = cheat_get(index);
 		if(cheat != NULL) {
-			new_cheat = &cheat;
+			*new_cheat = *cheat;
 			new_cheat->length = 0;
 		} else {
 			memset(new_cheat, 0, sizeof(Cheat));

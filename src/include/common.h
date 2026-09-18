@@ -25,4 +25,8 @@
 #include "utils.h"
 #include "version.h"
 
+/* These kernel exports are not declared by the PSP SDK headers. */
+int sceImposeHomeButton(int enable);
+int scePowerGetResumeCount(void);
+
 #endif

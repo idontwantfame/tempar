@@ -191,6 +191,7 @@ SceUID load_start_module(const char *file) {
 
 	if(mod_id >= 0) {
 		int ret = sceKernelStartModule(mod_id, 0, NULL, NULL, NULL);
+		(void)ret;
 		log("load_start_module: module 0x%08X started (return: 0x%08X)\n", mod_id, ret);
 	}
 

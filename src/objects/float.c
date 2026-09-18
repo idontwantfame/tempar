@@ -16,16 +16,10 @@
 #include "float.h"
 
 static int is_nan(unsigned int val) {
-	unsigned int conv;
-	int sign;
+	unsigned int conv = val;
 	int exp;
-	int mantissa;
-
-	conv = *((unsigned int *) val);
-	sign = (conv >> 31) & 1;
 
 	exp = (conv >> 23) & 0xff;
-	mantissa = conv & 0x7fffff;
 
 	if(exp == 255) {
 		return 1;
@@ -34,12 +28,11 @@ static int is_nan(unsigned int val) {
 }
 
 static int is_inf(unsigned int val) {
-	unsigned int conv;
+	unsigned int conv = val;
 	int sign;
 	int exp;
 	int mantissa;
 
-	conv = *((unsigned int *) val);
 	sign = (conv >> 31) & 1;
 
 	exp = (conv >> 23) & 0xff;
@@ -54,14 +47,12 @@ static int is_inf(unsigned int val) {
 
 static char get_num(float *val, int *exp) {
 	int digit;
-	float tmp;
 	char ret = '0';
 
-	if(*exp++ < 16) {
+	if((*exp)++ < 16) {
 		digit = (int) *val;
 		if((digit >= 0) && (digit < 10)) {
 			ret = digit + '0';
-			tmp = (float) digit;
 			*val = (*val - digit)*10.0f;
 		}
 	}
@@ -89,14 +80,14 @@ void f_cvt(unsigned int *address, char *buf, int bufsize, int precision, int mod
 	float val = *(float*)address;
 
 	// check for nan and +/- infinity 
-	inf = is_inf(address);
+	inf = is_inf(*address);
 	if(inf != 0) {
 		strncpy(buf, (inf < 0 ? "-INF" : "INF"), bufsize);
 		buf[bufsize - 1] = 0;
 		return;
 	}
 
-	if(is_nan(address)) {
+	if(is_nan(*address)) {
 		strncpy(buf, "NAN", bufsize);
 		buf[bufsize - 1] = 0;
 		return;

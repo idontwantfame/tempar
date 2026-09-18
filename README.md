@@ -13,7 +13,7 @@ For more information please refer to the [plugin readme](docs/README.md).
 To compile, ensure you have Docker installed and run the following in PowerShell:
 
 ```
-docker run -it -v "${PWD}:/src" -w "/src" pspdev/pspsdk make release
+docker run --rm -it -v "${PWD}:/src" -w "/src" ticky/pspdev make release
 ```
 
 A tar.gz file containing the binaries and other misc files will be output to a `build` folder.
