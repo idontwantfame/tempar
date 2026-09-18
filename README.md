@@ -6,6 +6,21 @@ TempAR is a cheat plugin for the PlayStation Portable.
 
 It is a heavily modified version of MKUltra which itself is a modified version of NitePR.
 
+## Origins and third-party code
+
+TempAR builds on several PSP-scene projects and retains their source attributions:
+
+- **NitePR** by SANiK, imk, and telazorn, via **MKUltra** by RedHate and NoEffex, supplied the original cheat-device
+  code and design.
+- **[PSPLINK](https://github.com/tyranid/psplinkusb)** by James Forshaw (TyRaNiD), Julian T, Rasmus B, and John
+  Kelley supplied the debug/impose menu, disassembler, and floating-point formatting code. These BSD-licensed notices
+  are reproduced in [docs/LICENSE](docs/LICENSE).
+- **[PSPSDK](https://github.com/pspdev/pspsdk)** supplied SDK-derived headers and the on-screen keyboard helper; their
+  source headers retain the original copyright and licence notices.
+- TempAR supports the **CWCheat** format and includes its SDK interface by weltall.
+
+See the full acknowledgements in the [plugin guide](docs/README.md#thanks).
+
 ## Install
 
 TempAR requires PSP custom firmware with plugin support; it does not run on official firmware.

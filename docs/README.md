@@ -205,6 +205,13 @@ A: Yes, if cheats for a game can't be loaded from the CWCheat/PSPAR code file it
 Q: Can I use my CWCheat POPS codes with TempAR?
 A: Yes, to use TempAR with PS1 games you should load the `tempar_lite.prx` file.
 
+## Code provenance
+
+TempAR is a heavily modified descendant of NitePR, through the MKUltra project. It also includes components derived
+from [PSPLINK](https://github.com/tyranid/psplinkusb) (the debug/impose menu, disassembler, and float formatter) and
+[PSPSDK](https://github.com/pspdev/pspsdk) (SDK-derived headers and the on-screen keyboard helper). The source files
+retain their original attribution and licence notices; the PSPLINK BSD licence is reproduced in [LICENSE](LICENSE).
+
 ## Thanks
 
 Special thanks go out to the following people, without them this would not have been possible:
